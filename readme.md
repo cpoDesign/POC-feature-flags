@@ -92,3 +92,31 @@ public class HomeController : Controller
 }
   
 ```
+
+
+### Usage in views
+
+requires using in _ViewImports.cshtml or in view.cshtml file
+
+```
+@addTagHelper *, Microsoft.FeatureManagement.AspNetCore
+
+```
+
+```xml
+<feature name="FeatureA">
+    <p>This can only be seen if 'FeatureA' is enabled.</p>
+</feature>
+
+<feature name="FeatureA" negate="true">
+    <p>This will be shown if 'FeatureA' is disabled.</p>
+</feature>
+
+<feature name="FeatureA, FeatureB" requirement="All">
+    <p>This can only be seen if 'FeatureA' and 'FeatureB' are enabled.</p>
+</feature>
+
+<feature name="FeatureA, FeatureB" requirement="Any">
+    <p>This can be seen if 'FeatureA', 'FeatureB', or both are enabled.</p>
+</feature>
+```
