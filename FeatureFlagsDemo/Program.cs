@@ -1,4 +1,3 @@
-using FeatureFlagsDemo.Models;
 using Microsoft.FeatureManagement;
 
 var builder = WebApplication.CreateBuilder(args);

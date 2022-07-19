@@ -31,6 +31,8 @@ namespace FeatureFlagsDemo.Controllers
                 homeIndexModel.FeatureA = true;
             }
 
+            homeIndexModel.FeatureA = await _featureManager.IsEnabledAsync(MyFeatureFlags.FeatureA);
+
             return View(homeIndexModel);
         }
 
