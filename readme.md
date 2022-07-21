@@ -120,3 +120,40 @@ requires using in _ViewImports.cshtml or in view.cshtml file
     <p>This can be seen if 'FeatureA', 'FeatureB', or both are enabled.</p>
 </feature>
 ```
+
+## App configuration
+
+Update project to include 
+
+```xml
+<UserSecretsId>8296b5b7-6db3-4ae9-a590-899ac642c0d7</UserSecretsId>
+```
+
+Then run the following command, where connection string is from azure app configuration connection strings
+
+```bash
+dotnet user-secrets set ConnectionStrings:AppConfig "connection string"
+```
+To display your local configuration use "list"
+```bash
+dotnet user-secrets list  
+```
+
+modify program.cs file to include use of feature flags
+
+```c#
+
+//Connect to your App Config Store using the connection string
+builder.AddAzureAppConfiguration(options=>options
+                                            .Connect(connectionString)
+                                            .UseFeatureFlags(featureFlagOptions =>
+                                            {
+                                                // Optional configuration
+                                                // featureFlagOptions.Label = "online";
+                                                // featureFlagOptions.CacheExpirationInterval = TimeSpan.FromMinutes(5);
+                                            })
+);
+
+```
+
+
