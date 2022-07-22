@@ -123,12 +123,21 @@ requires using in _ViewImports.cshtml or in view.cshtml file
 
 ## App configuration
 
+## Configure project to include secret id
+
 Update project to include 
 
 ```xml
 <UserSecretsId>8296b5b7-6db3-4ae9-a590-899ac642c0d7</UserSecretsId>
 ```
 
+## Packages used
+
+```xml
+<PackageReference Include="Microsoft.Azure.AppConfiguration.AspNetCore" Version="5.0.0" />
+```
+
+## Local secrets definition
 Then run the following command, where connection string is from azure app configuration connection strings
 
 ```bash
@@ -139,6 +148,7 @@ To display your local configuration use "list"
 dotnet user-secrets list  
 ```
 
+## Add loading feature flags from configuration
 modify program.cs file to include use of feature flags
 
 ```c#
